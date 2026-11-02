@@ -1,5 +1,6 @@
 package com.library.controller;
 
+import com.library.model.Author;
 import com.library.model.Book;
 import com.library.service.AuthorService;
 import com.library.service.BookService;
@@ -21,16 +22,20 @@ public class BookDetailController implements Controller {
     @Override
     public @Nullable ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Long id = Long.parseLong(request.getParameter("id"));
+        try {
+            Book foundBook = bookService.findById(id);
+            Author author = authorService.findById(foundBook.getAuthorId());
+            if (foundBook.getId() == null) {
+                return null;
+            }
+            ModelAndView modelAndView = new ModelAndView("book-detail");
+            modelAndView.addObject("book", foundBook);
+            modelAndView.addObject("author", author);
 
-        Book foundBook = bookService.findById(id);
-        String authorsName = authorService.findById(foundBook.getAuthorId()).getName();
-        if (foundBook.getId() == null){
+            return modelAndView;
+        } catch (RuntimeException e) {
             return null;
         }
-        ModelAndView modelAndView = new ModelAndView("book-detail");
-        modelAndView.addObject("book" , foundBook);
-        modelAndView.addObject("author'sName" , authorsName);
 
-        return modelAndView;
     }
 }

@@ -25,13 +25,14 @@ public class BookListController implements Controller {
 
     @Override
     public @Nullable ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         List<Book> allBooks = bookService.findAll();
         Map<Long, String> authorMap = authorService.getNameMap();
         String libraryName = bookService.getLibraryName();
 
         ModelAndView modelAndView = new ModelAndView("books");
         modelAndView.addObject("books" , allBooks);
-        modelAndView.addObject("author'sName" ,authorMap);
+        modelAndView.addObject("authorNames" ,authorMap);
         modelAndView.addObject("libraryName" , libraryName);
         return modelAndView;
     }

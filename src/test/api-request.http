@@ -1,0 +1,23 @@
+### List All Book
+GET http://localhost:8080/Ali_RafiBeyk_HW32_Maktab146_war_exploded/books
+
+<> 2026-11-02T183249.200.html
+
+### Get A Specific Book
+
+GET   http://localhost:8080/Ali_RafiBeyk_HW32_Maktab146_war_exploded/books/book-detail?id=1
+
+### Show Add Book Form
+
+GET http://localhost:8080/Ali_RafiBeyk_HW32_Maktab146_war_exploded/books/add
+
+### Add a new book
+
+POST http://localhost:8080/Ali_RafiBeyk_HW32_Maktab146_war_exploded/books/add
+#
+#Content-Type: application/x-www-form-urlencoded
+
+title=Spring in Action&pages=520&authorId=1
+###List all authors
+GET http://localhost:8080/Ali_RafiBeyk_HW32_Maktab146_war_exploded/authors
+

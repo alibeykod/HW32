@@ -9,26 +9,22 @@ public class AuthorDb {
     private static final List<Author> authors = new ArrayList<>();
 
     static {
-        authors.add(new Author(1L , "Fyodor Dostoevsky"));
-        authors.add(new Author(2L , "Dante Alighieri"));
-        authors.add(new Author(3L , "Lev Tolstoy"));
+        authors.add(new Author(1L, "Fyodor Dostoevsky"));
+        authors.add(new Author(2L, "Dante Alighieri"));
+        authors.add(new Author(3L, "Lev Tolstoy"));
     }
 
-    public List<Author> getAuthors(){
+    public List<Author> getAuthors() {
         return authors;
     }
 
-    public Author findById(Long id){
-        Author found = null;
-        for (Author author: authors){
-            if (author.getId() == id){
-                found = author;
-                break;
+    public Author findById(Long id) {
+        for (Author author : authors) {
+            if (author.getId().equals(id)) {
+                return author;
             }
         }
-        if (found == null){
-            System.out.println("Author With Id [" + id + "] Has Been Not Found ❌");
-        }
-        return found;
+        System.out.println("Author By This Id [" + id + "Has Been Not Found In List ❌");
+        return null;
     }
 }
